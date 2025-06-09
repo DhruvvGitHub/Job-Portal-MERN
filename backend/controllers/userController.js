@@ -117,6 +117,7 @@ export const logout = async (req, res) => {
 export const update = async (req, res) => {
   try {
     const {fullName, email, password, phoneNumber, bio, skills} = req.body
+    console.log(fullName, email,password, phoneNumber, bio, skills);
     const file = req.file;
 
     // cloudinary implementation will come here 
