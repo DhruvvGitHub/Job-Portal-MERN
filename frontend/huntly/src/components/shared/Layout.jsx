@@ -1,10 +1,12 @@
+import Footer from '../Footer';
 import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
   return (
-    <div className="w-screen px-8">
+    <div className="px-8">
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 };

@@ -4,9 +4,8 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
-const Job = () => {
-    const navigate = useNavigate()
-    const jobId = "dfgfdg"
+const Job = ({ job }) => {
+  const navigate = useNavigate();
   return (
     <div className="max-w-88 border-2 px-4 py-4 flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -22,24 +21,29 @@ const Job = () => {
           />
         </div>
         <div>
-          <h5 className="text-lg font-medium">Company Name</h5>
-          <h6>Location</h6>
+          <h5 className="text-lg font-medium">{job.company.companyName}</h5>
+          <h6>{job.location}</h6>
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-semibold">Job Title</h3>
+        <h3 className="text-lg font-semibold">{job.title}</h3>
         <h6>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-          molestiae aliquid provident.
+          {job.description}
         </h6>
       </div>
       <div className="flex gap-3">
-        <Badge variant="outline">Salary</Badge>
-        <Badge variant="outline">Job Type</Badge>
-        <Badge variant="outline">10 Positions</Badge>
+        <Badge variant="outline">{job.salary}</Badge>
+        <Badge variant="outline">{job.jobType}</Badge>
+        <Badge variant="outline">{job.positions} Positions</Badge>
       </div>
       <div className="flex gap-3">
-        <Button onClick={() => navigate(`/description/${jobId}`)} variant="outline" className="cursor-pointer">Details</Button>
+        <Button
+          onClick={() => navigate(`/description/${job._id}`)}
+          variant="outline"
+          className="cursor-pointer"
+        >
+          Details
+        </Button>
         <Button className="bg-blue-600 cursor-pointer">Save for later</Button>
       </div>
     </div>

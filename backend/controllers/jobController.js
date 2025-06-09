@@ -72,7 +72,9 @@ export const getJobById = async (req, res) => {
     try {
         const jobId = req.params.id
 
-        const job = await Job.findById(jobId)
+        const job = await Job.findById(jobId).populate({
+            path:"company"
+        }).sort({createdAt: -1})
         if(!job) {
             return res.status(404).json({
                 success: false,
