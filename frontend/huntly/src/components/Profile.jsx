@@ -56,10 +56,10 @@ const Profile = () => {
           {
             isResume ?           <a
             target="blank"
-            href="https://ui.shadcn.com/docs/components/radio-group"
+            href={user.profile.resume}
             className="!text-blue-600"
           >
-            My Resume
+            {user.profile.resumeOriginalName}
           </a> : <p>N/A</p>
           }
 

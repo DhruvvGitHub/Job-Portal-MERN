@@ -1,11 +1,12 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import getDataUri from "../utils/dataURI.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
   try {
     const { fullName, email, phoneNumber, password, role } = req.body;
-    console.log(fullName, email, phoneNumber, password, role);
 
     if (!fullName || !email || !phoneNumber || !password || !role) {
       return res.status(400).json({
@@ -14,9 +15,17 @@ export const register = async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
+    const file = req.file;
+    let cloudResponse = null;
 
-    if (user) {
+    if (file) {
+      const fileUri = getDataUri(file);
+      cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    }
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
       return res.status(400).json({
         success: false,
         message: "Account already registered. Please login",
@@ -24,22 +33,28 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
     await User.create({
       fullName,
       email,
       phoneNumber,
       password: hashedPassword,
       role,
+      profile: {
+        profilePhoto: cloudResponse?.secure_url || "",
+      },
     });
 
     return res.status(201).json({
-        success: true,
-        message: "Account created successfully"
-    })
+      success: true,
+      message: "Account created successfully",
+    });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
 
 
 export const login = async (req, res) => {
@@ -118,9 +133,11 @@ export const update = async (req, res) => {
   try {
     const {fullName, email, password, phoneNumber, bio, skills} = req.body
     console.log(fullName, email,password, phoneNumber, bio, skills);
+    
+    // cloudinary implementation
     const file = req.file;
-
-    // cloudinary implementation will come here 
+    const fileURI = getDataUri(file)
+    const cloudResponse = await cloudinary.uploader.upload(fileURI.content)
 
     let skillsArray;
     if(skills) {
@@ -145,7 +162,11 @@ export const update = async (req, res) => {
     if(phoneNumber) user.phoneNumber = phoneNumber
     if(bio) user.profile.bio = bio
     if(skills) user.profile.skills = skillsArray  
-    // resume will come later here 
+    
+    if(cloudResponse) {
+      user.profile.resume = cloudResponse.secure_url
+      user.profile.resumeOriginalName = file.originalname 
+    }
     await user.save()
 
     user = {

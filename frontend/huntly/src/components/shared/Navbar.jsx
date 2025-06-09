@@ -4,22 +4,32 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserRound, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/constant";
+import { setUser } from "../../redux/userSlice";
+import { toast } from "sonner";
 
 const Navbar = () => {
-  const user = useSelector(store => store.auth)
+  const user = useSelector(store => store.auth.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const logoutHandler = async () => {
   try {
     const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
+    if(res.data.success) {
+      dispatch(setUser(null))
+      navigate("/")
+      toast.success(res.data.message)
+    }
     console.log("Logout successful:", res.data);
     
     // Optionally dispatch logout in Redux or redirect user
   } catch (error) {
     console.error("Logout error:", error);
+    toast.error(error.response.data.mesaage)
   }
 };
 
@@ -28,7 +38,7 @@ const Navbar = () => {
     <div>
       <div className="flex items-center justify-between py-4">
         <div>
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-bold">
             Hunt<span className="text-blue-600">ly</span>
           </h2>
         </div>
@@ -40,7 +50,7 @@ const Navbar = () => {
           </ul>
           <div className="flex items-center gap-2">
                       {
-            user.user ? (
+            user? (
                         <Popover>
             <PopoverTrigger asChild>
               <Avatar className="cursor-pointer">
@@ -62,8 +72,8 @@ const Navbar = () => {
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                   <div>
-                    <h3>Dhruv Tanwani</h3>
-                    <p className="text-sm">Here will be my bio</p>
+                    <h3>{user?.fullName || "ok"}</h3>
+                    <p className="text-sm">{user.profile.bio}</p>
                   </div>
                 </div>
                 <div className="mt-3 flex flex-col gap-2">

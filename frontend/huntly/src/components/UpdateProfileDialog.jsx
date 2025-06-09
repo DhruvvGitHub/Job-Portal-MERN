@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+
   DialogTitle,
 } from "./ui/dialog";
 import { Label } from "./ui/label";
@@ -13,11 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "../utils/constant";
-import {setUser} from "../redux/userSlice.js"
+import {setLoading, setUser} from "../redux/userSlice.js"
 
 const UpdateProfileDialog = ({ open, setOpen }) => {
   const { user } = useSelector((store) => store.auth);
-  const [loading, setloading] = useState(false);
+  const loading = useSelector((store) => store.auth.loading);
   const dispatch = useDispatch()
 
   const [input, setInput] = useState({
@@ -34,8 +35,12 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   };
 
   const changeFileHandler = (e) => {
-    const file = e.target.files?.[0];
-  };
+  const file = e.target.files?.[0];
+  if (file) {
+    setInput({ ...input, file });
+  }
+};
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -50,12 +55,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     }
 
     try {
+        dispatch(setLoading(true));
         const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
             headers: {
                 "Content-type":"multipart/form-data"
             },
             withCredentials: true
         })
+        console.log("Returned user from backend:", res.data.user);
         if(res.data.success) {
             dispatch(setUser(res.data.user))
             toast.success(res.data.message)
@@ -63,6 +70,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     } catch (error) {
         console.log(error);
         toast.error(error.reponse.data.message)
+    } finally {
+        dispatch(setLoading(false))
     }
     setOpen(false)
     console.log(input);

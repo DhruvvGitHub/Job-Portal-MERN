@@ -32,7 +32,7 @@ const SignUp = () => {
   };
 
   const changeFileHandler = (e) => {
-    setInput({ ...input, file: e.target.files?.[0] });
+    setInput({ ...input, profile: e.target.files?.[0] });
   };
 
   const submitHandler = async (e) => {
@@ -45,7 +45,7 @@ const SignUp = () => {
     formData.append("password", input.password)
     formData.append("role", input.role)
     if(input.profile) {
-        formData.append("profile", input.profile)
+        formData.append("file", input.profile)
     }
     try {
         dispatch(setLoading(true))

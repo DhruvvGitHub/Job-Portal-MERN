@@ -2,7 +2,7 @@ import Navbar from './Navbar';
 
 const Layout = ({ children }) => {
   return (
-    <div className="px-8">
+    <div className="w-screen px-8">
       <Navbar />
       {children}
     </div>
