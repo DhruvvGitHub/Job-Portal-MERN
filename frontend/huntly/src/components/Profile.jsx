@@ -2,10 +2,17 @@ import { Contact, Mail, UserRoundPen } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import AppliedJobs from "./AppliedJobs";
+import { useState } from "react";
+import UpdateProfileDialog from "./UpdateProfileDialog";
+import { useSelector } from "react-redux";
 
-const demoSkills = ["html", "css", "js", "react"];
+const isResume = true;
 
 const Profile = () => {
+  const [open, setOpen] = useState(false) 
+  const user = useSelector(store => store.auth.user)
+  console.log(user);
+
   return (
     <div>
       <div className="max-w-5xl p-4 border border-zinc-200 rounded-lg flex flex-col gap-6">
@@ -18,47 +25,49 @@ const Profile = () => {
               />
             </Avatar>
             <div>
-              <h2 className="text-lg font-medium">Full Name</h2>
+              <h2 className="text-lg font-medium">{user.fullName}</h2>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Exercitationem esse similique consectetur ducimus. Pariatur
-                nobis reiciendis a exercitationem ea itaque.
+                {user.profile.bio}
               </p>
             </div>
           </div>
           <div>
-            <UserRoundPen />
-          </div>
+            <UserRoundPen onClick={() => setOpen(true)} size={32} className="border-2 rounded-md cursor-pointer" />
+          </div> 
         </div>
         <div className="flex items-center gap-4">
           <Mail />
-          <h5 className="text-lg font-medium">dhruv@male.com</h5>
+          <h5 className="text-lg font-medium">{user.email}</h5>
         </div>
         <div className="flex items-center gap-4">
           <Contact />
-          <h5 className="text-lg font-medium">999999999</h5>
+          <h5 className="text-lg font-medium">{user.phoneNumber} </h5>
         </div>
         <div>
           <h5 className="text-lg font-medium">Skills</h5>
           <div className="flex gap-2">
-            {demoSkills.map((skill, index) => {
-              return <Badge variant="outline" className="text-md">{skill}</Badge>;
+            {user.profile.skills.map((skill, index) => {
+              return <Badge key={index} variant="outline" className="text-md">{skill}</Badge>;
             })}
           </div>
         </div>
         <div>
           <h5 className="text-lg font-medium">Resume</h5>
-          <a
+          {
+            isResume ?           <a
             target="blank"
             href="https://ui.shadcn.com/docs/components/radio-group"
             className="!text-blue-600"
           >
             My Resume
-          </a>
+          </a> : <p>N/A</p>
+          }
+
         </div>
+              <div>
+<UpdateProfileDialog open={open} setOpen={setOpen} />
       </div>
-      <h3 className="text-xl font-medium mt-8 mb-4">Applied Jobs</h3>
-      <AppliedJobs />
+      </div>
     </div>
   );
 };

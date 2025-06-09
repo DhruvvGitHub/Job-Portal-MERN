@@ -6,9 +6,23 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { USER_API_END_POINT } from "../../utils/constant";
 
 const Navbar = () => {
   const user = useSelector(store => store.auth)
+
+  const logoutHandler = async () => {
+  try {
+    const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
+    console.log("Logout successful:", res.data);
+    
+    // Optionally dispatch logout in Redux or redirect user
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
+};
+
 
   return (
     <div>
@@ -26,7 +40,7 @@ const Navbar = () => {
           </ul>
           <div className="flex items-center gap-2">
                       {
-            user ? (
+            user.user ? (
                         <Popover>
             <PopoverTrigger asChild>
               <Avatar className="cursor-pointer">
@@ -63,7 +77,7 @@ const Navbar = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <LogOut />
-                    <Button variant="link">
+                    <Button variant="link" onClick={logoutHandler}>
                       Logout
                     </Button>
                   </div>
