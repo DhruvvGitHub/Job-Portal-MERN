@@ -3,8 +3,6 @@ import FilterCard from "./FilterCard";
 import Job from "./Job";
 import { useSelector } from "react-redux";
 
-const jobsArray = [12, 3, 4, 54, 6, 7, 5];
-
 const Jobs = () => {
   const allJobs = useSelector(store=>store.job.allJobs)
 
