@@ -10,10 +10,10 @@ const Footer = () => {
         </div>
         <div className='flex flex-col gap-2'>
             <p>Connect on social media</p>
-            <div className='flex gap-2'>
-                <Linkedin />
-                <Instagram />
-                <Twitter />
+            <div className='flex gap-4'>
+                <Linkedin className='cursor-pointer' />
+                <Instagram className='cursor-pointer' />
+                <Twitter className='cursor-pointer' />
             </div>
         </div>
     </div>

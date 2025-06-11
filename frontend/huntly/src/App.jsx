@@ -1,5 +1,7 @@
 import './App.css'
 import Companies from './components/admin/Companies'
+import CompanySetup from './components/admin/CompanySetup'
+import CreateCompany from './components/admin/CreateCompany'
 import Login from './components/auth/Login'
 import SignUp from './components/auth/SignUp'
 import Browse from './components/Browse'
@@ -75,7 +77,23 @@ const appRouter = createBrowserRouter([
         <Companies />
       </Layout>
     )
-  }
+  },
+  {
+    path: "admin/companies/create",
+    element: (
+      <Layout>
+        <CreateCompany />
+      </Layout>
+    )
+  },
+    {
+    path: "admin/companies/:id",
+    element: (
+      <Layout>
+        <CompanySetup />
+      </Layout>
+    )
+  },
 ])
 
 function App() {
