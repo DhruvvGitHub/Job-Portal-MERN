@@ -1,4 +1,5 @@
 import './App.css'
+import AdminJobs from './components/admin/AdminJobs'
 import Companies from './components/admin/Companies'
 import CompanySetup from './components/admin/CompanySetup'
 import CreateCompany from './components/admin/CreateCompany'
@@ -69,6 +70,7 @@ const appRouter = createBrowserRouter([
       </Layout>
     )
   },
+
   // Admin routes starts from here 
   {
     path: "admin/companies",
@@ -91,6 +93,14 @@ const appRouter = createBrowserRouter([
     element: (
       <Layout>
         <CompanySetup />
+      </Layout>
+    )
+  },
+  {
+    path: "admin/jobs",
+    element: (
+      <Layout>
+        <AdminJobs />
       </Layout>
     )
   },

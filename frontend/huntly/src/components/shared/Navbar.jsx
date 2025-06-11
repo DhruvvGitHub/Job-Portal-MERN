@@ -3,7 +3,6 @@ import { Popover } from "../ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserRound, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -48,12 +47,12 @@ const Navbar = () => {
             {user && user.role == "recruiter" ? (
               <>
                 <li className="font-medium cursor-pointer">
-                  <Link className="!text-black" to="admin/companies">
+                  <Link className="!text-black" to="/admin/companies">
                     Companies
                   </Link>
                 </li>
                 <li className="font-medium cursor-pointer">
-                  <Link className="!text-black" to="admin/jobs">
+                  <Link className="!text-black" to="/admin/jobs">
                     Jobs
                   </Link>
                 </li>
