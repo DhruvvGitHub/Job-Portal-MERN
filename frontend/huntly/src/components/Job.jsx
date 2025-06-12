@@ -29,7 +29,7 @@ const Job = ({ job }) => {
           />
         </div>
         <div>
-          <h5 className="text-lg font-medium">{job.company.companyName}</h5>
+          <h5 className="text-lg font-medium">{job?.company?.companyName}</h5>
           <h6>{job.location}</h6>
         </div>
       </div>

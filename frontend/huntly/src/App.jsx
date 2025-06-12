@@ -3,6 +3,7 @@ import AdminJobs from './components/admin/AdminJobs'
 import Companies from './components/admin/Companies'
 import CompanySetup from './components/admin/CompanySetup'
 import CreateCompany from './components/admin/CreateCompany'
+import CreateJob from './components/admin/CreateJob'
 import Login from './components/auth/Login'
 import SignUp from './components/auth/SignUp'
 import Browse from './components/Browse'
@@ -101,6 +102,14 @@ const appRouter = createBrowserRouter([
     element: (
       <Layout>
         <AdminJobs />
+      </Layout>
+    )
+  },
+  {
+    path: "admin/jobs/create",
+    element: (
+      <Layout>
+        <CreateJob />
       </Layout>
     )
   },

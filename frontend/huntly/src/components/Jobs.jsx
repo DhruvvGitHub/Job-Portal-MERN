@@ -17,8 +17,8 @@ const Jobs = () => {
           <div>
             <div className="grid grid-cols-2 gap-4">
               {allJobs.map((job, index) => (
-                <div>
-                  <Job key={index} job={job} />
+                <div key={index}>
+                  <Job job={job} />
                 </div>
               ))}
             </div>
