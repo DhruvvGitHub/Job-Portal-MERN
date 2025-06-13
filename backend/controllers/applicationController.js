@@ -145,5 +145,3 @@ export const updateStatus = async (req, res) => {
         console.log(error);
     }
 }
-
-// 6849bd84313aa115e119ad40

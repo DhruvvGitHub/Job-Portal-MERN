@@ -1,5 +1,8 @@
+import { useDispatch } from "react-redux";
 import { Button } from "./ui/button";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "./ui/carousel"
+import { useNavigate } from "react-router-dom";
+import { setSearchQuery } from "../redux/jobSlice";
 
 const categories = [
   "Frontend Developer",
@@ -15,6 +18,14 @@ const categories = [
 ];
 
 const CategoryCaraousel = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const searchJobHandler = (query) => {
+  dispatch(setSearchQuery(query))
+  navigate("/browse")
+}
+
   return (
     <div>
        <Carousel opts={{loop: true}} className="w-full max-w-2xl mx-auto my-20">
@@ -22,7 +33,7 @@ const CategoryCaraousel = () => {
           {
             categories.map((cat, index) => {
               return <CarouselItem className="w-fit md:basis-1/2 lg:basis-1/3" key={index}>
-                <Button variant="outline">
+                <Button onClick={() => searchJobHandler(cat)} variant="outline">
                   {cat}
                 </Button>
               </CarouselItem>

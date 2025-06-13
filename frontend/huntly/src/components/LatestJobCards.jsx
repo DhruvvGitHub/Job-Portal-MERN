@@ -1,8 +1,11 @@
 import { MapPin } from 'lucide-react'
 import { Badge } from "./ui/badge"
+import { Button } from './ui/button'
+import { useNavigate } from 'react-router-dom'
 
 const LatestJobCards = ({job}) => {
-  console.log(job);
+  const navigate = useNavigate()
+
   return (
     <div className='p-4 bg-[#f0f0f070] flex flex-col gap-6 shadow-lg'>
         <div>
@@ -18,6 +21,9 @@ const LatestJobCards = ({job}) => {
             <Badge variant='outline'>{job.salary}</Badge>
             <Badge variant='outline'>{job.positions} Positions</Badge>
             <Badge variant='outline'>{job.jobType}</Badge>
+        </div>
+        <div>
+          <Button onClick={() => navigate(`/description/${job._id}`)} variant="outline" className='bg-blue-600 text-white cursor-pointer'>Details</Button>
         </div>
 
     </div>

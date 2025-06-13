@@ -18,7 +18,7 @@ const Job = ({ job }) => {
   return (
     <div className="max-w-88 border-2 px-4 py-4 flex flex-col gap-4">
       <div className="flex items-center justify-between font-medium">
-        <p>{daysAgoFunction(job.createdAt) == 0 ? "Today" : `${daysAgoFunction(job.createdAt)} days ago`}</p>
+        <p>{daysAgoFunction(job?.createdAt) == 0 ? "Today" : `${daysAgoFunction(job.createdAt)} days ago`}</p>
         <Bookmark />
       </div>
       <div className="flex gap-4 items-center">
@@ -31,23 +31,23 @@ const Job = ({ job }) => {
         </div>
         <div>
           <h5 className="text-lg font-medium">{job?.company?.companyName}</h5>
-          <h6>{job.location}</h6>
+          <h6>{job?.location}</h6>
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-semibold">{job.title}</h3>
+        <h3 className="text-lg font-semibold">{job?.title}</h3>
         <h6>
-          {job.description}
+          {job?.description}
         </h6>
       </div>
       <div className="flex gap-3">
-        <Badge variant="outline">{job.salary}</Badge>
-        <Badge variant="outline">{job.jobType}</Badge>
-        <Badge variant="outline">{job.positions} Positions</Badge>
+        <Badge variant="outline">{job?.salary}</Badge>
+        <Badge variant="outline">{job?.jobType}</Badge>
+        <Badge variant="outline">{job?.positions} Positions</Badge>
       </div>
       <div className="flex gap-3">
         <Button
-          onClick={() => navigate(`/description/${job._id}`)}
+          onClick={() => navigate(`/description/${job?._id}`)}
           variant="outline"
           className="cursor-pointer"
         >

@@ -1,19 +1,29 @@
+import { useDispatch, useSelector } from "react-redux"
 import Job from "./Job"
+import { useEffect } from "react"
+import { setSearchQuery } from "../redux/jobSlice"
+import useGetAllJobs from "../hooks/useGetAllJobs"
 
-const randomJobs = [1,2,3]
 
 const Browse = () => {
+    useGetAllJobs()
+    const dispatch = useDispatch()
+    const {allJobs} = useSelector(store=>store.job)
+
+    useEffect(() => {
+        dispatch(setSearchQuery(""))
+    })
   return (
     <div className="flex flex-col gap-8">
         <div>
             <h2 className="text-xl font-medium">Search results</h2>
-            <h5 className="text-sm text-zinc-500">Showing {randomJobs.length} results</h5>
+            <h5 className="text-sm text-zinc-500">Showing {allJobs.length} results</h5>
         </div>
-        <div className="flex gap-4">
+        <div className="grid grid-cols-2 gap-4">
             {
-                randomJobs.map((item, index) => {
+                allJobs.map((job) => {
                     return (
-                        <Job />
+                        <Job key={job._id} job={job} />
                     )
                 })
             }
