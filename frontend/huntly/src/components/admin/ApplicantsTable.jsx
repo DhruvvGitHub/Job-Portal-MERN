@@ -14,7 +14,6 @@ import { MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { APPLICATION_API_END_POINT } from "../../utils/constant";
-import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const applicantStatus = ["Accept", "Reject"];

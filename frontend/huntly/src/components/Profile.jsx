@@ -28,9 +28,9 @@ const Profile = () => {
               />
             </Avatar>
             <div>
-              <h2 className="text-lg font-medium">{user.fullName}</h2>
+              <h2 className="text-lg font-medium">{user?.fullName}</h2>
               <p>
-                {user.profile.bio}
+                {user?.profile?.bio}
               </p>
             </div>
           </div>
@@ -40,11 +40,11 @@ const Profile = () => {
         </div>
         <div className="flex items-center gap-4">
           <Mail />
-          <h5 className="text-lg font-medium">{user.email}</h5>
+          <h5 className="text-lg font-medium">{user?.email}</h5>
         </div>
         <div className="flex items-center gap-4">
           <Contact />
-          <h5 className="text-lg font-medium">{user.phoneNumber} </h5>
+          <h5 className="text-lg font-medium">{user?.phoneNumber} </h5>
         </div>
         <div>
           <h5 className="text-lg font-medium">Skills</h5>
@@ -59,7 +59,7 @@ const Profile = () => {
           {
             isResume ?           <a
             target="blank"
-            href={user.profile.resume}
+            href={user?.profile?.resume}
             className="!text-blue-600"
           >
             {user.profile.resumeOriginalName}

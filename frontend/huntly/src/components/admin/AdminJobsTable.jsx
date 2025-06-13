@@ -72,20 +72,20 @@ const AdminJobsTable = () => {
                   <TableCell className="text-right">
                     <Popover>
                       <PopoverTrigger>
-                        <MoreHorizontal />
+                        <MoreHorizontal className="cursor-pointer" />
                       </PopoverTrigger>
                       <PopoverContent>
                         <div>
                           <div
                             onClick={() => navigate(`/admin/jobs/${job?._id}`)}
-                            className="flex items-center gap-2 mb-4"
+                            className="flex items-center gap-2 mb-4 cursor-pointer"
                           >
                             <Edit size={20} />
                             <span>Edit</span>
                           </div>
                           <div
                             onClick={() => navigate(`/admin/jobs/${job?._id}/applicants`)}
-                            className="flex items-center gap-2 mt-4"
+                            className="flex items-center gap-2 mt-4 cursor-pointer"
                           >
                             <FileUser size={20} />
                             <span>Applicants</span>

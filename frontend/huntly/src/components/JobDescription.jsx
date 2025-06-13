@@ -75,69 +75,66 @@ const JobDescription = () => {
     </div>; 
   }
 
+    console.log(singleJob);
+    console.log(singleJob.title);
+
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-medium my-4">
-          {singleJob?.company?.companyName}
-        </h2>
-        <Button
-          onClick={isApplied ? null : applyJobHandler}
-          disabled={isApplied}
-          variant="outline"
-          className="bg-blue-600 text-white outline-none"
-        >
-          {isApplied ? "Already Applied" : "Apply Now"}
-        </Button>
-      </div>
-      <div>
-        <h2 className="text-3xl font-semibold my-6">{singleJob.title}</h2>
-        <div className="flex gap-2">
-          <Badge variant="outline" className="text-md">
-            Posted 3 days ago
-          </Badge>
-          <Badge variant="outline" className="text-md">
-            {singleJob.jobType}
-          </Badge>
-        </div>
-      </div>
-      <div className="my-6">
-        <h3 className="text-2xl font-semibold">Job Description</h3>
-        <p>{singleJob.description}</p>
-      </div>
-      <div className="my-6">
-        <h3 className="text-2xl font-semibold">Requirements</h3>
-        <ul className="list-disc pl-5">
-          {singleJob.requirements?.map((req, index) => (
-            <li key={index}>{req}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <div className="flex flex-col gap-2">
-          <h5 className="text-lg">
-            <span className="font-semibold">Role</span>: {singleJob.title}
-          </h5>
-          <h5 className="text-lg">
-            <span className="font-semibold">Location</span>:{" "}
-            {singleJob.location}
-          </h5>
-          <h5 className="text-lg">
-            <span className="font-semibold">Required Experience</span>:{" "}
-            {singleJob.experienceLevel}{" "}
-            {singleJob.experienceLevel > 1 ? "Years" : "Year"}
-          </h5>
-          <h5 className="text-lg">
-            <span className="font-semibold">Salary</span>:{" "}
-            {singleJob.salary} LPA
-          </h5>
-          <h5 className="text-lg">
-            <span className="font-semibold">Total Applicants</span>:{" "}
-            {singleJob.applications?.length || 0}
-          </h5>
-        </div>
-      </div>
+    <div className="max-w-3xl mx-auto p-6">
+  {/* Top Header Row */}
+  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div className="flex items-center">
+          <img className="w-8 h-8 bg-red-400" src={singleJob.company.logo} alt="" />
+    <h2 className="text-xl font-medium">{singleJob?.company.companyName}</h2>
     </div>
+    <Button
+      onClick={isApplied ? null : applyJobHandler}
+      disabled={isApplied}
+      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 cursor-pointer"
+    >
+      {isApplied ? "Already Applied" : "Apply Now"}
+    </Button>
+  </div>
+
+  {/* Title & Job Type */}
+  <div className="mt-6">
+    <h2 className="text-3xl font-bold">{singleJob?.title}</h2>
+    <div className="flex gap-3 mt-2 flex-wrap">
+      <Badge className="text-sm bg-blue-600 text-white">Posted 3 days ago</Badge>
+      <Badge className="text-sm bg-blue-600 text-white">{singleJob?.jobType}</Badge>
+    </div>
+  </div>
+
+  {/* Description */}
+  <div className="my-6">
+    <h3 className="text-2xl font-semibold">Job Description</h3>
+    <p className="mt-2 text-gray-800">{singleJob?.description}</p>
+  </div>
+
+  {/* Requirements */}
+  <div className="my-6">
+    <h3 className="text-2xl font-semibold">Requirements</h3>
+    <ul className="list-disc pl-6 mt-2 text-gray-800">
+      {singleJob?.requirements?.map((req, index) => (
+        <li key={index}>{req}</li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Other Details */}
+  <div className="mt-6">
+    <div className="flex flex-col gap-2 text-gray-800">
+      <h5><span className="font-semibold">Role</span>: {singleJob?.title}</h5>
+      <h5><span className="font-semibold">Location</span>: {singleJob?.location}</h5>
+      <h5><span className="font-semibold">Required Experience</span>: {singleJob?.experienceLevel} {singleJob?.experienceLevel > 1 ? "Years" : "Year"}</h5>
+      <h5><span className="font-semibold">Salary</span>: {singleJob?.salary} LPA</h5>
+      <h5><span className="font-semibold">Total Applicants</span>: {singleJob?.applications?.length || 0}</h5>
+    </div>
+  </div>
+</div>
+
+
+
+
   );
 };
 

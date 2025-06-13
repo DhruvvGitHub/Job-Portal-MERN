@@ -37,7 +37,7 @@ const AppliedJobsTable = () => {
                       {new Date(item.createdAt).toLocaleDateString("en-GB")}
                     </TableCell>
                     <TableCell>{item.job.title}</TableCell>
-                    <TableCell>{item.job.company.companyName}</TableCell>
+                    <TableCell>{item?.job?.company?.companyName}</TableCell>
                    <TableCell>
   <div className="text-right">
     <Badge

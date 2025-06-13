@@ -26,7 +26,7 @@ const Applicants = () => {
 
   return (
     <div>
-        <h2 className='text-2xl font-semibold mb-4'>Total Applicants: {applicants.applications.length}</h2>
+        <h2 className='text-2xl font-semibold mb-4'>Total Applicants: {applicants?.applications?.length}</h2>
         <ApplicantsTable />
     </div>
   )

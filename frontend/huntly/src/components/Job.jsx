@@ -39,7 +39,7 @@ const Job = ({ job }) => {
         </h6>
       </div>
       <div className="flex gap-3">
-        <Badge variant="outline">{job?.salary}</Badge>
+        <Badge variant="outline">{job?.salary} LPA</Badge>
         <Badge variant="outline">{job?.jobType}</Badge>
         <Badge variant="outline">{job?.positions} Positions</Badge>
       </div>
