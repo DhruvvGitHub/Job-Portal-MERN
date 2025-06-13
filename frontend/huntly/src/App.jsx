@@ -5,6 +5,7 @@ import Companies from './components/admin/Companies'
 import CompanySetup from './components/admin/CompanySetup'
 import CreateCompany from './components/admin/CreateCompany'
 import CreateJob from './components/admin/CreateJob'
+import ProtectedRoute from './components/admin/ProtectedRoute'
 import Login from './components/auth/Login'
 import SignUp from './components/auth/SignUp'
 import Browse from './components/Browse'
@@ -78,7 +79,9 @@ const appRouter = createBrowserRouter([
     path: "admin/companies",
     element: (
       <Layout>
+        <ProtectedRoute>
         <Companies />
+        </ProtectedRoute>
       </Layout>
     )
   },
@@ -86,7 +89,9 @@ const appRouter = createBrowserRouter([
     path: "admin/companies/create",
     element: (
       <Layout>
+        <ProtectedRoute>
         <CreateCompany />
+        </ProtectedRoute>
       </Layout>
     )
   },
@@ -94,7 +99,9 @@ const appRouter = createBrowserRouter([
     path: "admin/companies/:id",
     element: (
       <Layout>
+        <ProtectedRoute>
         <CompanySetup />
+        </ProtectedRoute>
       </Layout>
     )
   },
@@ -102,7 +109,9 @@ const appRouter = createBrowserRouter([
     path: "admin/jobs",
     element: (
       <Layout>
+                <ProtectedRoute>
         <AdminJobs />
+        </ProtectedRoute>
       </Layout>
     )
   },
@@ -110,7 +119,9 @@ const appRouter = createBrowserRouter([
     path: "admin/jobs/create",
     element: (
       <Layout>
+        <ProtectedRoute>
         <CreateJob />
+        </ProtectedRoute>
       </Layout>
     )
   },
@@ -118,7 +129,9 @@ const appRouter = createBrowserRouter([
     path: "admin/jobs/:id/applicants",
     element: (
       <Layout>
+                <ProtectedRoute>
         <Applicants />
+        </ProtectedRoute>
       </Layout>
     )
   },

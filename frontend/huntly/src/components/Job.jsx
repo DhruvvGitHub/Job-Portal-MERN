@@ -13,9 +13,7 @@ const Job = ({ job }) => {
     return Math.floor(timeDifference/ (100*60*60*24))
   }
   
-  
-  console.log(job);
-  return (
+    return (
     <div className="max-w-88 border-2 px-4 py-4 flex flex-col gap-4">
       <div className="flex items-center justify-between font-medium">
         <p>{daysAgoFunction(job?.createdAt) == 0 ? "Today" : `${daysAgoFunction(job.createdAt)} days ago`}</p>

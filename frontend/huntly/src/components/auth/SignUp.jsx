@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -17,6 +17,8 @@ const SignUp = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const loading = useSelector((store)=>store.auth.loading)
+    const user = useSelector((store)=>store.auth.user)
+
   const [hidePassword, sethidePassword] = useState(true);
   const [input, setInput] = useState({
     fullName: "",
@@ -66,6 +68,13 @@ const SignUp = () => {
         dispatch(setLoading(false))
     ]}
   }
+
+   useEffect(() => {
+      if(user) {
+        navigate("/")
+      }
+    })
+  
 
   return (
     <div>
