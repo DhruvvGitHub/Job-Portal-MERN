@@ -10,16 +10,14 @@ import {
 } from "../ui/table";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Edit, MoreHorizontal } from "lucide-react";
+import { Edit, FileUser, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const AdminJobsTable = () => {
-  const {allAdminJobs, searchJobByText} = useSelector(
-    (store) => store.job
-  );
+  const { allAdminJobs, searchJobByText } = useSelector((store) => store.job);
   const [filterJobs, setFilterJobs] = useState(allAdminJobs);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const filteredJobs =
@@ -28,20 +26,20 @@ const AdminJobsTable = () => {
         if (!searchJobByText) {
           return true;
         }
-        return job?.title
-          .toLowerCase()
-          .includes(searchJobByText.toLowerCase()) || 
-          job?.company?.companyName?.toLowerCase().includes(searchJobByText.toLowerCase())
+        return (
+          job?.title.toLowerCase().includes(searchJobByText.toLowerCase()) ||
+          job?.company?.companyName
+            ?.toLowerCase()
+            .includes(searchJobByText.toLowerCase())
+        );
       });
-      setFilterJobs(filteredJobs)
+    setFilterJobs(filteredJobs);
   }, [allAdminJobs, searchJobByText]);
 
   return (
     <div>
       <Table>
-        <TableCaption>
-          A list of your all your registered jobs.
-        </TableCaption>
+        <TableCaption>A list of your all your registered jobs.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Logo</TableHead>
@@ -52,11 +50,11 @@ const AdminJobsTable = () => {
         </TableHeader>
         <TableBody>
           {filterJobs?.length <= 0 ? (
-           <TableRow>
-    <TableCell colSpan={4} className="text-center">
-      You have not created any job yet
-    </TableCell>
-  </TableRow>
+            <TableRow>
+              <TableCell colSpan={4} className="text-center">
+                You have not created any job yet
+              </TableCell>
+            </TableRow>
           ) : (
             filterJobs?.map((job, index) => {
               return (
@@ -77,13 +75,21 @@ const AdminJobsTable = () => {
                         <MoreHorizontal />
                       </PopoverTrigger>
                       <PopoverContent>
-                        <div onClick={()=> navigate(`/admin/jobs/${job?._id}`)} className="flex items-center gap-2">
-                          <Edit size={20} />
-                          <span>Edit</span>
-                        </div>
-                        <div onClick={()=> navigate(`/admin/jobs/${job?._id}`)} className="flex items-center gap-2">
-                          <Edit size={20} />
-                          <span>Applicants</span>
+                        <div>
+                          <div
+                            onClick={() => navigate(`/admin/jobs/${job?._id}`)}
+                            className="flex items-center gap-2 mb-4"
+                          >
+                            <Edit size={20} />
+                            <span>Edit</span>
+                          </div>
+                          <div
+                            onClick={() => navigate(`/admin/jobs/${job?._id}/applicants`)}
+                            className="flex items-center gap-2 mt-4"
+                          >
+                            <FileUser size={20} />
+                            <span>Applicants</span>
+                          </div>
                         </div>
                       </PopoverContent>
                     </Popover>

@@ -1,20 +1,23 @@
 import { Contact, Mail, UserRoundPen } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
-import AppliedJobs from "./AppliedJobs";
+import AppliedJobs from "./AppliedJobsTable";
 import { useState } from "react";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
+import useGetAppliedJobs from "../hooks/useGetAppliedJobs";
 
 const isResume = true;
 
 const Profile = () => {
+  useGetAppliedJobs()
   const [open, setOpen] = useState(false) 
   const user = useSelector(store => store.auth.user)
   console.log(user);
 
   return (
     <div>
+      <h2 className="text-2xl font-semibold mb-2">Profile Details</h2>
       <div className="max-w-5xl p-4 border border-zinc-200 rounded-lg flex flex-col gap-6">
         <div className="flex items-top justify-between">
           <div className="flex items-center w-[70%]">
@@ -67,6 +70,10 @@ const Profile = () => {
               <div>
 <UpdateProfileDialog open={open} setOpen={setOpen} />
       </div>
+      </div>
+      <h2 className="text-2xl font-semibold mt-6 mb-2">Applied Jobs</h2>
+      <div>
+        <AppliedJobs />
       </div>
     </div>
   );

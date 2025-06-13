@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
 
 const HeroSection = () => {
+  const [searchQuery, setSearchQuery] = useState("")
+
   return (
     <div>
       <div className="flex flex-col items-center">
@@ -20,8 +22,8 @@ const HeroSection = () => {
               5 Lakh + Jobs to explore
             </p>
           </div>
-          <div>
-            <input type="text" placeholder="Search your dream jobs here" className="min-w-xl outline-none px-4 py-2 rounded-l-full bg-gray-100" />
+          <div className="mb-8">
+            <input type="text" onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search your dream jobs here" className="min-w-xl outline-none px-4 py-2 rounded-l-full bg-gray-100" />
             <Button className="bg-blue-600 rounded-r-full py-4">
               <Search />
             </Button>
