@@ -66,7 +66,7 @@ const Login = () => {
     <div> 
       <div className="w-full flex items-center justify-center">
         <div className="py-2 px-4 border-1 border-zinc-200 w-2xl flex items-center justify-center">
-          <form onSubmit={submitHandler} action="" className="w-full">
+          <form onSubmit={submitHandler} autoComplete="off" action="" className="w-full">
             <h3 className="text-2xl font-medium mb-4">Login</h3>
             <div className="flex flex-col gap-2">
               <div>

@@ -16,10 +16,10 @@ const Browse = () => {
   return (
     <div className="flex flex-col gap-8">
         <div>
-            <h2 className="text-xl font-medium">Search results</h2>
+            <h2 className="text-xl font-medium">Browse all jobs</h2>
             <h5 className="text-sm text-zinc-500">Showing {allJobs.length} results</h5>
         </div>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {
                 allJobs.map((job) => {
                     return (

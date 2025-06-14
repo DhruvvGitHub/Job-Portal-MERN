@@ -20,10 +20,12 @@ const Home = () => {
   })
 
   return (
-    <div>
-    <HeroSection />
-    <CategoryCarousel />
-    <LatestJobs />
+    <div className="w-full max-w-[100vw]">
+      <HeroSection />
+      <CategoryCarousel />
+      <div className="w-full max-w-[100vw]">
+        <LatestJobs />
+      </div>
     </div>
   )
 }

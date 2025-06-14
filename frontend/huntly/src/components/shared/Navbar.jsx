@@ -96,33 +96,34 @@ const Navbar = () => {
                 </PopoverTrigger>
                 <PopoverContent className="w-60 bg-white px-4 py-2 rounded-md shadow-2xl border-0">
                   <div>
-                    <div className="flex gap-2">
-                      <Avatar className="cursor-pointer">
+                    <div className="flex items-center gap-2">
+                      <Avatar className="cursor-pointer border-2">
                         <AvatarImage
                           src={user.profile.profilePhoto}
                           alt="@shadcn"
                         />
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarFallback>
+                          <img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="" />
+                        </AvatarFallback>
                       </Avatar>
                       <div>
                         <h3>{user?.fullName || "ok"}</h3>
-                        <p className="text-sm">{user.profile.bio}</p>
                       </div>
                     </div>
                     <div className="mt-3 flex flex-col gap-2">
                       {
                         user && user.role == "student" && (
-                                                <div className="flex items-center gap-2">
+                                                <div className="flex items-center gap-1">
                         <UserRound />
-                        <Button variant="link">
+                        <Button variant="outline">
                           <Link to="/profile">Profile</Link>
                         </Button>
                       </div>
                         )
                       }
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
                         <LogOut />
-                        <Button variant="link" onClick={logoutHandler}>
+                        <Button variant="outline" onClick={logoutHandler} className="cursor-pointer">
                           Logout
                         </Button>
                       </div>

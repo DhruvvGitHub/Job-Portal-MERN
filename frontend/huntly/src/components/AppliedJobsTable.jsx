@@ -15,15 +15,15 @@ const AppliedJobsTable = () => {
 
   return (
     <div>
-      <div>
-        <Table>
-          <TableCaption>List of all applied jobs</TableCaption>
+      <div className="overflow-x-auto">
+        <Table className="overflow-x-auto">
+          <TableCaption >List of all applied jobs</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Applied On</TableHead>
-              <TableHead>Job Role</TableHead>
-              <TableHead>Company</TableHead>
-              <TableHead className="text-right">Status</TableHead>
+              <TableHead className="text-sm md:text-lg font-semibold">Applied On</TableHead>
+              <TableHead className="text-sm md:text-lg font-semibold">Job Role</TableHead>
+              <TableHead className="text-sm md:text-lg font-semibold">Company</TableHead>
+              <TableHead className="text-sm md:text-lg font-semibold text-right">Status</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

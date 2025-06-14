@@ -32,7 +32,7 @@ const SavedJobs = () => {
         <h2 className="text-xl font-medium">Saved Jobs</h2>
         <h5 className="text-sm text-zinc-500">Showing {savedJobs?.length || 0} saved jobs</h5>
       </div>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {savedJobs && savedJobs.length > 0 ? (
           savedJobs.map((job) => (
             <Job key={job._id} job={job} />

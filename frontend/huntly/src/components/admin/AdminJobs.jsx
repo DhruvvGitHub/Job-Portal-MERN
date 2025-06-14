@@ -35,6 +35,7 @@ const AdminJobs = () => {
         </Button>
       </div>
       <div>
+        <h2 className="text-xl font-semibold">All Jobs</h2>
         <AdminJobsTable />
       </div>
     </div>

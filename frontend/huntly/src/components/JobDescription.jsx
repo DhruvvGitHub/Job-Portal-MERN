@@ -82,9 +82,9 @@ const JobDescription = () => {
     <div className="max-w-3xl mx-auto p-6">
   {/* Top Header Row */}
   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-    <div className="flex items-center">
-          <img className="w-8 h-8 bg-red-400" src={singleJob.company.logo} alt="" />
-    <h2 className="text-xl font-medium">{singleJob?.company.companyName}</h2>
+    <div className="flex gap-2">
+          <img className="w-8 h-8" src={singleJob?.company?.logo} alt="" />
+    <h2 className="text-xl font-medium">{singleJob?.company?.companyName}</h2>
     </div>
     <Button
       onClick={isApplied ? null : applyJobHandler}
@@ -97,7 +97,7 @@ const JobDescription = () => {
 
   {/* Title & Job Type */}
   <div className="mt-6">
-    <h2 className="text-3xl font-bold">{singleJob?.title}</h2>
+    <h2 className="text-2xl md:text-3xl font-semibold">{singleJob?.title}</h2>
     <div className="flex gap-3 mt-2 flex-wrap">
       <Badge className="text-sm bg-blue-600 text-white">Posted 3 days ago</Badge>
       <Badge className="text-sm bg-blue-600 text-white">{singleJob?.jobType}</Badge>

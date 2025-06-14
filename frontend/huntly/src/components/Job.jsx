@@ -34,7 +34,7 @@ const Job = ({ job }) => {
   }
   
     return (
-    <div className="max-w-88 border-2 px-4 py-4 flex flex-col gap-4 bg-white shadow-2xl">
+    <div className="max-w-80 md:max-w-88 border-2 px-4 py-4 flex flex-col gap-4 bg-white shadow-2xl">
       <div className="flex items-center justify-between font-medium">
         <p>{daysAgoFunction(job?.createdAt) == 0 ? "Today" : `${daysAgoFunction(job.createdAt)} days ago`}</p>
 
@@ -57,7 +57,7 @@ const Job = ({ job }) => {
        <h6 className="truncate">{job?.description}</h6>
 
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 flex-wrap">
         <Badge variant="outline">{job?.salary} LPA</Badge>
         <Badge variant="outline">{job?.jobType}</Badge>
         <Badge variant="outline">{job?.positions} Positions</Badge>
