@@ -13,6 +13,7 @@ import Home from './components/Home'
 import JobDescription from './components/JobDescription'
 import Jobs from './components/Jobs'
 import Profile from './components/Profile'
+import SavedJobs from './components/SavedJobs'
 import Layout from './components/shared/Layout'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
@@ -49,19 +50,27 @@ const appRouter = createBrowserRouter([
       </Layout>
     )
   },
+    {
+    path: "/browse",
+    element: (
+      <Layout>
+        <Browse />
+      </Layout>
+    )
+  },
+  {
+    path: "/saved",
+    element: (
+      <Layout>
+        <SavedJobs />
+      </Layout>
+    )
+  },
   {
     path: "/description/:id",
     element: (
       <Layout>
         <JobDescription />
-      </Layout>
-    )
-  },
-  {
-    path: "/browse",
-    element: (
-      <Layout>
-        <Browse />
       </Layout>
     )
   },

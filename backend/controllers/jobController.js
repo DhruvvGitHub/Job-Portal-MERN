@@ -1,5 +1,6 @@
 import { use } from "react";
 import { Job } from "../models/jobModel.js";
+import { User } from "../models/userModel.js";
 
 export const postJob = async (req, res) => {
   try {
@@ -95,11 +96,11 @@ export const getJobById = async (req, res) => {
     const job = await Job.findById(jobId)
       .populate([
         {
-          path: "company"
+          path: "company",
         },
         {
-          path: "applications"
-        }
+          path: "applications",
+        },
       ])
       .sort({ createdAt: -1 });
 
@@ -141,5 +142,60 @@ export const getAdminJobs = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const saveJob = async (req, res) => {
+  try {
+    const { jobId } = req.body;
+
+    const user = await User.findById(req.id);
+
+    if (!user.savedJobs.includes(jobId)) {
+      user.savedJobs.push(jobId);
+      await user.save();
+    }
+
+    // Get complete job details with populated company
+    const savedJobs = await Job.find({ _id: { $in: user.savedJobs } })
+      .populate({
+        path: "company"
+      });
+
+    res.status(200).json({
+      success: true, 
+      message: "Job saved successfully",
+      savedJobs
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+export const getSavedJobs = async (req, res) => {
+  try {
+    const userId = req.id;
+
+    const user = await User.findById(userId).populate({
+      path: "savedJobs",
+      populate: { path: "company" }  // populates company inside each saved job
+    });
+
+    if (!user || user.savedJobs.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No saved jobs found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Saved jobs fetched successfully",
+      savedJobs: user.savedJobs,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };

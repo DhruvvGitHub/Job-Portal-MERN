@@ -11,6 +11,7 @@ import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "../../redux/userSlice";
+import { clearSavedJobs } from "../../redux/jobSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const Login = () => {
       });
     dispatch(setLoading(true));
       if (res.data.success) {
+        dispatch(clearSavedJobs());
         dispatch(setUser(res.data.user))
         navigate("/");
         toast.success(res.data.message);

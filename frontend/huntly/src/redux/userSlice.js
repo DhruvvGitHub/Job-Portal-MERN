@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { clearSavedJobs } from "./jobSlice";
 
 const authSlice = createSlice({
   name: "auth",
@@ -13,8 +14,18 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    clearUser: (state) => {
+      state.user = null;
+    }
   },
 });
 
-export const { setLoading, setUser } = authSlice.actions;
+export const { setLoading, setUser, clearUser } = authSlice.actions;
+
+// Thunk to handle logout
+export const logoutUser = () => (dispatch) => {
+  dispatch(clearUser());
+  dispatch(clearSavedJobs());
+};
+
 export default authSlice.reducer;

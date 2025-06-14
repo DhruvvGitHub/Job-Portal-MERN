@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/constant";
-import { setUser } from "../../redux/userSlice";
+import { logoutUser } from "../../redux/userSlice";
 import { toast } from "sonner";
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
         withCredentials: true,
       });
       if (res.data.success) {
-        dispatch(setUser(null));
+        dispatch(logoutUser());
         navigate("/");
         toast.success(res.data.message);
       }
@@ -72,6 +72,11 @@ const Navbar = () => {
                 <li className="font-medium cursor-pointer">
                   <Link className="!text-black" to="/Browse">
                     Browse
+                  </Link>
+                </li>
+                <li className="font-medium cursor-pointer">
+                  <Link className="!text-black" to="/saved">
+                    Saved Jobs
                   </Link>
                 </li>
               </>

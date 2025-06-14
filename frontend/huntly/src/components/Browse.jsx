@@ -19,7 +19,7 @@ const Browse = () => {
             <h2 className="text-xl font-medium">Search results</h2>
             <h5 className="text-sm text-zinc-500">Showing {allJobs.length} results</h5>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-8">
             {
                 allJobs.map((job) => {
                     return (

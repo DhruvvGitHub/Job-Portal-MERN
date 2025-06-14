@@ -85,6 +85,18 @@ h1 {
   color: #000000;
 }
 
+.truncate-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  /* Recommended: line clamp (both vendor-prefixed and standard) */
+  -webkit-line-clamp: 1; /* For Safari, older browsers */
+  line-clamp: 1;          /* Standard property */
+}
+
+
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
