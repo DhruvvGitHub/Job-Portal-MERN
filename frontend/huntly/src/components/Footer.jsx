@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='py-8 flex items-center justify-between border-t-2 mt-8'>
+    <div className='p-8 flex items-center justify-between border-t-2 mt-8'>
         <div>
           <h2 className='text-xl font-semibold'>Hunt<span className='text-blue-600'>ly</span></h2>  
           <p>All rights reserved © 2025 Huntly (India) Ltd.</p>

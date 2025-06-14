@@ -19,7 +19,7 @@ const HeroSection = () => {
     <div>
       <div className="flex flex-col items-center">
         <div className="header flex flex-col items-center gap-12">
-          <div className="w-fit px-4 py-2 bg-gray-100 rounded-3xl shadow-lg">
+          <div className="w-fit px-4 py-2 bg-white rounded-3xl shadow-lg">
             <h3 className="text-lg text-blue-600 font-medium">
               India's No.1 Job Hunt Website
             </h3>
@@ -33,7 +33,7 @@ const HeroSection = () => {
             </p>
           </div>
           <div className="mb-8">
-            <input type="text" onChange={(e) => setQuery(e.target.value)} placeholder="Search your dream jobs here" className="min-w-xl outline-none px-4 py-2 rounded-l-full bg-gray-100" />
+            <input type="text" onChange={(e) => setQuery(e.target.value)} placeholder="Search your dream jobs here" className="min-w-xl outline-none px-4 py-2 rounded-l-full bg-white" />
             <Button onClick={searchJobHandler} className="bg-blue-600 rounded-r-full py-4 cursor-pointer">
               <Search />
             </Button>

@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between py-4">
+      <div className="flex items-center justify-between px-8 py-6 mb-4 bg-white">
         <div>
           <h2 className="text-2xl font-bold">
             Hunt<span className="text-blue-600">ly</span>
