@@ -132,7 +132,6 @@ export const logout = async (req, res) => {
 export const update = async (req, res) => {
   try {
     const {fullName, email, password, phoneNumber, bio, skills} = req.body
-    console.log(fullName, email,password, phoneNumber, bio, skills);
     
     // cloudinary implementation
     const file = req.file;
@@ -144,7 +143,6 @@ export const update = async (req, res) => {
       skillsArray = skills.split(",")
     }
 
-    console.log("Middleware req.id:", req.id);
     const userId = req.id; // middleware authentication
 
     let user = await User.findById(userId)

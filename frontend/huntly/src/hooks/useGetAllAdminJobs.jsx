@@ -10,16 +10,11 @@ const useGetAllAdminJobs = () => {
   useEffect(() => {
     const fetchAllAdminJobs = async () => {
       try {
-        console.log("Fetching admin jobs from:", `${JOB_API_END_POINT}/getadminjobs`);
         const res = await axios.get(`${JOB_API_END_POINT}/getadminjobs`, {
           withCredentials: true,
         });
-        console.log("Admin jobs API response:", res);
         if (res.data.success) {
-          console.log("Dispatching jobs to Redux:", res.data.jobs);
           dispatch(setallAdminJobs(res.data.jobs));
-        } else {
-          console.log("API call was not successful:", res.data);
         }
       } catch (error) {
         console.error("Error fetching admin jobs:", error);

@@ -13,7 +13,6 @@ const Profile = () => {
   useGetAppliedJobs()
   const [open, setOpen] = useState(false) 
   const user = useSelector(store => store.auth.user)
-  console.log(user);
 
   return (
     <div>

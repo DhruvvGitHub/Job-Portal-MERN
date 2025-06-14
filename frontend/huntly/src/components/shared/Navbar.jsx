@@ -25,7 +25,6 @@ const Navbar = () => {
         navigate("/");
         toast.success(res.data.message);
       }
-      console.log("Logout successful:", res.data);
 
       // Optionally dispatch logout in Redux or redirect user
     } catch (error) {

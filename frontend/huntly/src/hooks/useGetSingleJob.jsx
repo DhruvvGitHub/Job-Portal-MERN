@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import { JOB_API_END_POINT } from '../utils/constant'
-import { setAllJobs, setSingleJob } from '../redux/jobSlice'
+import { setSingleJob } from '../redux/jobSlice'
 import { useDispatch } from 'react-redux'
 
 const useGetSingleJob = ({jobId}) => {
@@ -12,7 +12,6 @@ const useGetSingleJob = ({jobId}) => {
     const fetchSingleJob = async() => {
         try {
             const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, {withCredentials: true})
-            console.log(res);
             if(res.data.success) {
                 dispatch(setSingleJob(res.data.jobs))
             }

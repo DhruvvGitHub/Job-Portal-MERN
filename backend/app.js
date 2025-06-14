@@ -37,6 +37,4 @@ app.get("/", (req, res) => {
 })
 
 const PORT = process.env.PORT
-app.listen(PORT, () => {PORT
-    console.log(`Server listening on PORT ${PORT}`);
-})
+app.listen(PORT, () => {PORT})

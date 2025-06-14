@@ -32,7 +32,6 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
 
     try {
         const res = await axios.post(`${USER_API_END_POINT}/login`, input, {

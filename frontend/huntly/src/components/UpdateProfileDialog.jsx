@@ -62,7 +62,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             },
             withCredentials: true
         })
-        console.log("Returned user from backend:", res.data.user);
         if(res.data.success) {
             dispatch(setUser(res.data.user))
             toast.success(res.data.message)
@@ -74,7 +73,6 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         dispatch(setLoading(false))
     }
     setOpen(false)
-    console.log(input);
   };
 
   return (

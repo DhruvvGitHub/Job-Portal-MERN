@@ -48,18 +48,15 @@ const JobDescription = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
-        console.log("Fetching job with ID:", jobId);
         const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, {
           withCredentials: true,
         });
-        console.log("API Response:", res.data);
         if (res.data.success) {
-          console.log("Dispatching job:", res.data.job);
           dispatch(setSingleJob(res.data.job));
           setIsApplied(res.data.job.applications.some(application=>application.applicant == user._id ))
         }
       } catch (error) {
-        console.log("Error fetching job:", error);
+        console.log(error);
         toast.error("Failed to fetch job details");
       }
     };
@@ -74,9 +71,6 @@ const JobDescription = () => {
       <p className="text-lg text-gray-500">Loading job details...</p>
     </div>; 
   }
-
-    console.log(singleJob);
-    console.log(singleJob.title);
 
   return (
     <div className="max-w-3xl mx-auto p-6">

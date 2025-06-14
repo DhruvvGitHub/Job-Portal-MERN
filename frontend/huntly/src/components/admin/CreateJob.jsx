@@ -68,7 +68,6 @@ const CreateJob = () => {
     } finally {
       setLoading(true);
     }
-    console.log(input);
   };
 
   return (

@@ -5,7 +5,6 @@ import getDataUri from "../utils/dataURI.js";
 export const register = async (req, res) => {
   try {
     const { companyName } = req.body;
-    console.log("Request Body:", req.body);
 
     if (!companyName || companyName.trim() === "") {
       return res.status(400).json({
@@ -22,7 +21,6 @@ export const register = async (req, res) => {
       });
     }
 
-    console.log("User ID in register:", req.id);
     company = await Company.create({
       companyName,
       userId: req.id,
@@ -105,7 +103,6 @@ export const updateCompany = async (req, res) => {
       });
     }
 
-    console.log(company);
     return res.status(200).json({
       success: true,
       message: "Company information updated successfully",
