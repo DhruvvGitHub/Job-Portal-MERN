@@ -135,8 +135,12 @@ export const update = async (req, res) => {
     
     // cloudinary implementation
     const file = req.file;
-    const fileURI = getDataUri(file)
-    const cloudResponse = await cloudinary.uploader.upload(fileURI.content)
+    let cloudResponse = null;
+    
+    if (file) {
+      const fileURI = getDataUri(file)
+      cloudResponse = await cloudinary.uploader.upload(fileURI.content)
+    }
 
     let skillsArray;
     if(skills) {
@@ -183,5 +187,9 @@ export const update = async (req, res) => {
     })
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    })
   }
 }

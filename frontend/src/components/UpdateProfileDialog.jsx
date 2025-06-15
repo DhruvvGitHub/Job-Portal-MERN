@@ -65,14 +65,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         if(res.data.success) {
             dispatch(setUser(res.data.user))
             toast.success(res.data.message)
+            setOpen(false)
         }
     } catch (error) {
         console.log(error);
-        toast.error(error.reponse.data.message)
+        toast.error(error.response?.data?.message || "Something went wrong")
     } finally {
         dispatch(setLoading(false))
     }
-    setOpen(false)
   };
 
   return (
