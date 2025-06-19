@@ -21,8 +21,8 @@ const Jobs = () => {
   },[allJobs, searchQuery])
 
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="w-full">
+      <div className="flex justify-between gap-6">
         <div className="w-[30%] md:w-[20%]"> 
           <FilterCard />
         </div>

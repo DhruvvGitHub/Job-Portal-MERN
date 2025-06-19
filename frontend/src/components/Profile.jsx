@@ -10,9 +10,9 @@ import useGetAppliedJobs from "../hooks/useGetAppliedJobs";
 const isResume = true;
 
 const Profile = () => {
-  useGetAppliedJobs()
-  const [open, setOpen] = useState(false) 
-  const user = useSelector(store => store.auth.user)
+  useGetAppliedJobs();
+  const [open, setOpen] = useState(false);
+  const user = useSelector((store) => store.auth.user);
 
   return (
     <div>
@@ -28,14 +28,16 @@ const Profile = () => {
             </Avatar>
             <div>
               <h2 className="text-lg font-medium">{user?.fullName}</h2>
-              <p>
-                {user?.profile?.bio}
-              </p>
+              <p>{user?.profile?.bio}</p>
             </div>
           </div>
           <div>
-            <UserRoundPen onClick={() => setOpen(true)} size={32} className="border-2 rounded-md cursor-pointer" />
-          </div> 
+            <UserRoundPen
+              onClick={() => setOpen(true)}
+              size={32}
+              className="border-2 rounded-md cursor-pointer"
+            />
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <Mail />
@@ -49,28 +51,35 @@ const Profile = () => {
           <h5 className="text-lg font-medium">Skills</h5>
           <div className="flex gap-2">
             {user.profile.skills.map((skill, index) => {
-              return <Badge key={index} variant="outline" className="text-md">{skill}</Badge>;
+              return (
+                <Badge key={index} variant="outline" className="text-md">
+                  {skill}
+                </Badge>
+              );
             })}
           </div>
         </div>
         <div>
           <h5 className="text-lg font-medium">Resume</h5>
-          {
-            isResume ?           <a
-            target="blank"
-            href={user?.profile?.resume}
-            className="!text-blue-600"
-          >
-            {user.profile.resumeOriginalName}
-          </a> : <p>N/A</p>
-          }
-
+          {isResume ? (
+            <a
+              target="blank"
+              href={user?.profile?.resume}
+              className="!text-blue-600"
+            >
+              {user.profile.resumeOriginalName}
+            </a>
+          ) : (
+            <p>N/A</p>
+          )}
         </div>
-              <div>
-<UpdateProfileDialog open={open} setOpen={setOpen} />
+        <div>
+          <UpdateProfileDialog open={open} setOpen={setOpen} />
+        </div>
       </div>
-      </div>
-      <h2 className="text-xl md:text-2xl font-semibold mt-6 mb-2">Applied Jobs</h2>
+      <h2 className="text-xl md:text-2xl font-semibold mt-6 mb-2">
+        Applied Jobs
+      </h2>
       <div>
         <AppliedJobs />
       </div>

@@ -42,8 +42,8 @@ const FilterCard = () => {
             {data.array.map((item, idx) => {
               const itemId = `r${index} - ${idx}` // unique id
               return (
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={item} id={itemId} />
+                <div className="flex items-center space-x-2" key={idx}>
+                  <RadioGroupItem value={item} id={itemId} className="bg-white" />
                   <Label htmlFor={itemId}>{item}</Label>
                 </div>
               );

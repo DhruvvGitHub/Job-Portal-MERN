@@ -62,7 +62,7 @@ const Job = ({ job }) => {
         <Badge variant="outline">{job?.jobType}</Badge>
         <Badge variant="outline">{job?.positions} Positions</Badge>
       </div>
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <Button
           onClick={() => navigate(`/description/${job?._id}`)}
           variant="outline"
