@@ -10,7 +10,10 @@ const LatestJobCards = ({job}) => {
     <div className='p-4 bg-[#ffffff] flex flex-col gap-6 shadow-lg w-full'>
         <div>
         <h3 className='text-xl font-semibold mb-2'>{job.title}</h3>
+        <div className='flex gap-2'> 
+          <img className='w-8 h-8 rounded-full object-cover' src={job?.company?.logo} alt="" />
         <h5 className='text-lg font-semibold'>{job.company?.companyName || 'Company Name Not Available'}</h5>
+        </div>
         <p className="break-words truncate">{job.description}</p>
         </div>
         <div className='flex items-center gap-2'>

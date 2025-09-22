@@ -22,7 +22,6 @@ const authSlice = createSlice({
 
 export const { setLoading, setUser, clearUser } = authSlice.actions;
 
-// Thunk to handle logout
 export const logoutUser = () => (dispatch) => {
   dispatch(clearUser());
   dispatch(clearSavedJobs());

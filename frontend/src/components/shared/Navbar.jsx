@@ -10,7 +10,7 @@ import { USER_API_END_POINT } from "../../utils/constant";
 import { logoutUser } from "../../redux/userSlice";
 import { toast } from "sonner";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const user = useSelector((store) => store.auth.user);
@@ -167,7 +167,7 @@ const Navbar = () => {
                 <PopoverTrigger asChild>
                   <Avatar className="cursor-pointer">
                     <AvatarImage
-                      src={user.profile.profilePhoto}
+                      src={user?.profile?.profilePhoto}
                       alt="@shadcn"
                     />
                     <AvatarFallback>CN</AvatarFallback>
@@ -178,7 +178,7 @@ const Navbar = () => {
                     <div className="flex items-center gap-2">
                       <Avatar className="cursor-pointer border-2">
                         <AvatarImage
-                          src={user.profile.profilePhoto}
+                          src={user?.profile?.profilePhoto}
                           alt="@shadcn"
                         />
                         <AvatarFallback>

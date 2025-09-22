@@ -36,7 +36,7 @@ const Job = ({ job }) => {
     return (
     <div className="max-w-80 md:max-w-88 border-2 px-4 py-4 flex flex-col gap-4 bg-white shadow-2xl">
       <div className="flex items-center justify-between font-medium">
-        <p>{daysAgoFunction(job?.createdAt) == 0 ? "Today" : `${daysAgoFunction(job.createdAt)} days ago`}</p>
+        {/* <p>{daysAgoFunction(job?.createdAt) == 0 ? "Today" : `${daysAgoFunction(job.createdAt)} days ago`}</p> */}
 
       </div>
       <div className="flex gap-4 items-center">
